@@ -1,34 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## NEXTJS + MYSQL CRUD Functionality
+### CRUD API functionality using next.js x MySQL
+---
 
-## Getting Started
+| Endpoints | METHOD | Descriptions |
+| --------- | ------ | ------------ |
+| http://localhost:3000/api/employees | GET | Employees List
+| http://localhost:3000/api/employees/{id} | GET | Employee's Data
+| http://localhost:3000/api/employees/{id} | POST | Add Data
+| http://localhost:3000/api/employees/{id} | PUT | Update Data 
+| http://localhost:3000/api/employees/{id} | DELETE | Delete Data
 
-First, run the development server:
+NOTE: 
 
-```bash
-npm run dev
-# or
-yarn dev
+1. npm install mysql -  node.js driver for mysql
+2. npm install next-connect - The method routing and middleware layer for Next.js
+3. Creating Database
 ```
+CREATE DATABASE crud_nextjs;
+```
+4. Config connection in environment variables
+5. Create employees table
+```
+CREATE TABLE `employees` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `address` longtext NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `insert_timestamp` datetime NOT NULL,
+  `update_timestamp` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+);
+```
+6. npm install moment - Date and time library
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
